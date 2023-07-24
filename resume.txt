@@ -1,0 +1,526 @@
+{% load static %}
+{% load ui_tags %}
+
+{% if curriculum_vitae %}
+
+
+<style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .page {
+            box-sizing: border-box;
+      }
+
+      .header {
+        height: 111px;
+        background: #e2f2fe;
+        padding: 0 30px;
+      }
+
+      .submain{
+
+         padding : 15px 45px;
+      }
+
+      .img {
+        width: 59px;
+        height: 59px;
+        border-radius: 50%;
+        object-fit: cover;
+        float: left;
+        margin-right: 20px;
+        margin-top: 25px;
+      }
+
+      .name-role-exp {
+        color: #0e369c;
+        font-size: 20px;
+        line-height: 1.2;
+        width: 350px;
+      }
+
+      .humancloud-logo {
+        width: 126px;
+        height: 26px;
+        float: right;
+        margin-top: -33px;
+      }
+
+      .name {
+        color: #0e369c;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.2;
+        padding-top: 33px;
+      }
+
+      .role-exp {
+        color: #0e369c;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.2;
+      }
+
+      .summary-area {
+        margin-top: 30px;
+      }
+
+      .title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .summary-desc {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      .skill-heading-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .title-under-skill {
+        color: #000;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+
+      .desc-under-skill {
+        color: #808080;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      .desc-para {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      .personal-details {
+        color: #000;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      .sub-personal-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+      }
+
+      .skill_ul{
+      padding-inline-start: 15px
+      }
+
+
+
+</style>
+</head>
+<body>
+<div class="page">
+    <div class="header">
+        <div class="img-div">
+            <img
+                    class="img"
+                    src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+                    alt="Candidate Photo"
+            />
+        </div>
+        <div class="name-role-exp">
+            <div class="name">{{curriculum_vitae.account.name }}</div>
+            <div class="role-exp">
+                <span>{{curriculum_vitae.title}}</span>
+                <span class="vertical-line">|</span>
+                <span>{{ curriculum_vitae.working_since|display_experience_from_since }} years of experience</span>
+            </div>
+        </div>
+
+        <div>
+            <img
+                    class="humancloud-logo"
+                    src="https://static.wixstatic.com/media/2b6261_2112b53d7e084d9d98ce41c51723efee~mv2.png/v1/fill/w_218,h_35,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/main-logo.png"
+                    alt="Company Logo"
+            />
+        </div>
+    </div>
+
+    <div class="submain">
+        {% include "curriculum_vitae/include/view/summary1.html" with curriculum_vitae=curriculum_vitae %}
+        {% include "curriculum_vitae/include/view/skill.html" with curriculum_vitae=curriculum_vitae %}
+        {% include "curriculum_vitae/include/view/education.html" with curriculum_vitae=curriculum_vitae %}
+        {% include "curriculum_vitae/include/view/employment_hist.html" with curriculum_vitae=curriculum_vitae %}
+        {% include "curriculum_vitae/include/view/cert.html" with curriculum_vitae=curriculum_vitae %}
+        {% include "curriculum_vitae/include/view/personal_info.html" with curriculum_vitae=curriculum_vitae %}
+    </div>
+</div>
+{% else %}
+<h4>
+    No data found
+</h4>
+{% endif %}
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Document</title>-->
+<!--    <style>-->
+<!--      body {-->
+<!--        margin: 0;-->
+<!--        padding: 0;-->
+<!--        font-size: 14px;-->
+<!--        line-height: 1.5;-->
+<!--      }-->
+
+<!--      .page {-->
+<!--            box-sizing: border-box;-->
+<!--      }-->
+
+<!--      .header {-->
+<!--        height: 111px;-->
+<!--        background: #e2f2fe;-->
+<!--        padding: 0 30px;-->
+<!--      }-->
+
+<!--      .submain{-->
+
+<!--         padding : 15px 45px;-->
+<!--      }-->
+
+<!--      .img {-->
+<!--        width: 59px;-->
+<!--        height: 59px;-->
+<!--        border-radius: 50%;-->
+<!--        object-fit: cover;-->
+<!--        float: left;-->
+<!--        margin-right: 20px;-->
+<!--        margin-top: 25px;-->
+<!--      }-->
+
+<!--      .name-role-exp {-->
+<!--        color: #0e369c;-->
+<!--        font-size: 20px;-->
+<!--        line-height: 1.2;-->
+<!--        width: 350px;-->
+<!--      }-->
+
+<!--      .humancloud-logo {-->
+<!--        width: 126px;-->
+<!--        height: 26px;-->
+<!--        float: right;-->
+<!--        margin-top: -33px;-->
+<!--      }-->
+
+<!--      .name {-->
+<!--        color: #0e369c;-->
+<!--        font-size: 20px;-->
+<!--        font-weight: 700;-->
+<!--        line-height: 1.2;-->
+<!--        padding-top: 33px;-->
+<!--      }-->
+
+<!--      .role-exp {-->
+<!--        color: #0e369c;-->
+<!--        font-size: 14px;-->
+<!--        font-weight: 300;-->
+<!--        line-height: 1.2;-->
+<!--      }-->
+
+<!--      .summary-area {-->
+<!--        margin-top: 30px;-->
+<!--      }-->
+
+<!--      .title {-->
+<!--        color: #0e369c;-->
+<!--        font-size: 16px;-->
+<!--        font-weight: 700;-->
+<!--        line-height: 1.2;-->
+<!--      }-->
+
+<!--      .summary-desc {-->
+<!--        color: #444;-->
+<!--        font-size: 14px;-->
+<!--        font-weight: 400;-->
+<!--        line-height: 1.5;-->
+<!--      }-->
+
+<!--      .skill-heading-row {-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        gap: 10px;-->
+<!--        margin-top: 10px;-->
+<!--      }-->
+
+<!--      .title-under-skill {-->
+<!--        color: #000;-->
+<!--        font-size: 14px;-->
+<!--        font-weight: 500;-->
+<!--        line-height: 1.2;-->
+<!--      }-->
+
+<!--      .desc-under-skill {-->
+<!--        color: #808080;-->
+<!--        font-size: 13px;-->
+<!--        font-weight: 400;-->
+<!--        line-height: 1.2;-->
+<!--      }-->
+
+<!--      .desc-para {-->
+<!--        color: #444;-->
+<!--        font-size: 14px;-->
+<!--        font-weight: 400;-->
+<!--        line-height: 1.5;-->
+<!--      }-->
+
+<!--      .personal-details {-->
+<!--        color: #000;-->
+<!--        font-size: 13px;-->
+<!--        font-weight: 400;-->
+<!--        line-height: 1.2;-->
+<!--      }-->
+
+<!--      .sub-personal-details {-->
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--        align-items: flex-start;-->
+<!--        gap: 2px;-->
+<!--      }-->
+<!--    </style>-->
+<!--  </head>-->
+<!--  <body>-->
+<!--    <div class="page">-->
+<!--      <div class="header">-->
+<!--        <div class="img-div">-->
+<!--          <img-->
+<!--            class="img"-->
+<!--            src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"-->
+<!--            alt="Candidate Photo"-->
+<!--          />-->
+<!--        </div>-->
+<!--        <div class="name-role-exp">-->
+<!--          <div class="name">Aditya Patil</div>-->
+<!--          <div class="role-exp">-->
+<!--            <span>Software Engineer</span>-->
+<!--            <span class="vertical-line">|</span>-->
+<!--            <span>2+ years of experience</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <img-->
+<!--            class="humancloud-logo"-->
+<!--            src="https://static.wixstatic.com/media/2b6261_2112b53d7e084d9d98ce41c51723efee~mv2.png/v1/fill/w_218,h_35,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/main-logo.png"-->
+<!--            alt="Company Logo"-->
+<!--          />-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="submain">-->
+<!--        <div class="summary-area">-->
+<!--          <div class="title">Summary</div>-->
+<!--          <div class="summary-desc">-->
+<!--            Having good hands-on experience of 11+ years in cloud computing,-->
+<!--            Networking, and Project Management with technical expertise in the-->
+<!--            implementation, operations, and support functions of-->
+<!--            mission-critical business solutions using IT as a tool.-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Skill Set</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <ul style="padding-inline-start: 15px">-->
+<!--              <li class="title-under-skill">Languages</li>-->
+<!--              <span class="desc-under-skill">Java, Python</span>-->
+
+<!--              <li class="title-under-skill">Framework</li>-->
+<!--              <span class="desc-under-skill">Spring, Django</span>-->
+
+<!--              <li class="title-under-skill">Webservers</li>-->
+<!--              <span class="desc-under-skill">Tomcat</span>-->
+
+<!--              <li class="title-under-skill">Cloud</li>-->
+<!--              <span class="desc-under-skill">AWS, Azure</span>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Educational History</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <ul style="padding-inline-start: 15px">-->
+<!--              <li class="title-under-skill">-->
+<!--                Bachelor of Engineering, Computer Science-->
+<!--              </li>-->
+<!--              <span class="desc-under-skill">Jun 2007</span>-->
+
+<!--              <li class="title-under-skill">-->
+<!--                Master of Engineering, Computer Science-->
+<!--              </li>-->
+<!--              <span class="desc-under-skill">Jul 2009</span>-->
+
+<!--              <li class="title-under-skill">-->
+<!--                Indian Institute of Technology, Delhi-->
+<!--              </li>-->
+<!--              <span class="desc-under-skill">Jun 2009</span>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Work Experience</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <ul style="padding-inline-start: 15px">-->
+<!--              <li class="title-under-skill">Informatica</li>-->
+<!--              <span class="desc-under-skill">Jun 2007</span>-->
+
+<!--              <li class="title-under-skill">Software Engineer, Bangalore</li>-->
+<!--              <span class="desc-under-skill"-->
+<!--                >Worked as a Sr. DevOps Engineer with an Australia-based leading-->
+<!--                provider of F&A BPO (Finance and Accounting Business Process-->
+<!--                Outsourcing) customer-->
+<!--              </span>-->
+
+<!--              <li class="title-under-skill">iWeb-Sprint</li>-->
+<!--              <span class="desc-under-skill">Jun 2009 - Jun 2010</span>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Descriptions</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <p class="desc-para">-->
+<!--              Highly motivated and results-driven professional with [number]-->
+<!--              years of experience in [industry/field]. Proven track record of-->
+<!--              delivering exceptional [specific skills or outcomes] while-->
+<!--              maintaining a strong focus on [core values or key priorities].-->
+<!--              Possesses a strategic mindset and the ability to effectively-->
+<!--              collaborate with cross-functional teams to drive success.-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Roles & Responsibilities</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <p class="desc-para">-->
+<!--              Highly motivated and results-driven professional with [number]-->
+<!--              years of experience in [industry/field]. Proven track record of-->
+<!--              delivering exceptional [specific skills or outcomes] while-->
+<!--              maintaining a strong focus on [core values or key priorities].-->
+<!--              Possesses a strategic mindset and the ability to effectively-->
+<!--              collaborate with cross-functional teams to drive success.-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Technologies used</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <p class="title-under-skill">-->
+<!--              Angular JS 1.6, JavaScript, HTML, CSS-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Certifications</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <ul style="padding-inline-start: 15px">-->
+<!--              <li class="title-under-skill">-->
+<!--                Google Professional Data Engineer-->
+<!--              </li>-->
+<!--              <span class="desc-under-skill">Jun 2007 - Jun 2023</span>-->
+
+<!--              <li class="title-under-skill">-->
+<!--                Google Professional Cloud Developer-->
+<!--              </li>-->
+<!--              <span class="desc-under-skill">Jun 2007 - Jun 2023</span>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="skill-area">-->
+<!--          <div class="skill-heading-row">-->
+<!--            <div class="title">Personal Details</div>-->
+<!--          </div>-->
+<!--          <hr />-->
+<!--          <div class="skill-subtitle">-->
+<!--            <div class="sub-personal-details">-->
+<!--              <h5-->
+<!--                class="title-under-skill"-->
+<!--                style="margin-bottom: 0; margin-top: 0"-->
+<!--              >-->
+<!--                Name-->
+<!--              </h5>-->
+<!--              <span class="personal-details">Aditya Patil</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <h5-->
+<!--                class="title-under-skill"-->
+<!--                style="margin-bottom: 0; margin-top: 7px"-->
+<!--              >-->
+<!--                Marital Status-->
+<!--              </h5>-->
+<!--              <span class="personal-details">Unmarried</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <h5-->
+<!--                class="title-under-skill"-->
+<!--                style="margin-bottom: 0; margin-top: 7px"-->
+<!--              >-->
+<!--                Contact No-->
+<!--              </h5>-->
+<!--              <span class="personal-details">7785965236</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <h5-->
+<!--                class="title-under-skill"-->
+<!--                style="margin-bottom: 0; margin-top: 7px"-->
+<!--              >-->
+<!--                Email-->
+<!--              </h5>-->
+<!--              <span class="personal-details">aditya@drc.com</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </body>-->
+<!--</html>-->
+
+

@@ -1,0 +1,30 @@
+{% load static %}
+{% load ui_tags %}
+<style>
+
+
+.title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .summary-desc {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      .summary-area {
+        margin-top: 30px;
+      }
+
+      </style>
+<div class="summary-area">
+
+
+<div class="title">Summary</div>
+<div class="summary-desc ">{{ curriculum_vitae.summary }}</div>
+</div>

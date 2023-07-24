@@ -1,0 +1,52 @@
+{% load static %}
+{% load ui_tags %}
+
+{% if curriculum_vitae %}
+
+    <div class="card border shadow-xs ">
+        <!-- Card image -->
+        <div class="card-header pb-0">
+            <h2 class="card-title text-bold">{{ curriculum_vitae.account.name }}</h2>
+            <h6 class="mb-0">{{ curriculum_vitae.title }}</h6>
+            <h6>{{ curriculum_vitae.working_since|display_experience_from_since }} years of experience</h6>
+        </div>
+        <!-- Card body -->
+        <div class="card-body pt-0">
+            <div class="row pt-4">
+                <div class="col">
+                    {% include "curriculum_vitae/include/view/summary.html" with curriculum_vitae=curriculum_vitae %}
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
+                    {% include "curriculum_vitae/include/view/skill_sets.html" with curriculum_vitae=curriculum_vitae %}
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
+                    {% include "curriculum_vitae/include/view/education_history.html" with curriculum_vitae=curriculum_vitae %}
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
+                    {% include "curriculum_vitae/include/view/employment_history.html" with curriculum_vitae=curriculum_vitae %}
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
+                    {% include "curriculum_vitae/include/view/certification.html" with curriculum_vitae=curriculum_vitae %}
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
+                    {% include "curriculum_vitae/include/view/personal_details.html" with curriculum_vitae=curriculum_vitae %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <h4>
+        No data found
+    </h4>
+{% endif %}

@@ -1,0 +1,130 @@
+#
+# from django.http import HttpResponse
+# from django.shortcuts import render
+# from django.template.loader import get_template
+# from django.urls import reverse
+# from django.views import View
+# from xhtml2pdf import pisa
+# from django.conf import settings
+#
+# from core.controllers.curriculum_vitae.curriculum_vitae import CurriculumVitaeController
+# from core.controllers.resource.account import ResourceAccountController
+# from core.decorators.login_required import login_required
+# from core.utils.xhtml2pdf_utils import link_callback
+#
+#
+# class CurriculumVitaeDownloadView(View):
+#
+#     @staticmethod
+#     @login_required()
+#     def get(request, curriculum_vitae_id):
+#         curriculum_vitae = CurriculumVitaeController.get_curriculum_vitae_by_id(
+#             requester=request.user, curriculum_vitae_id=curriculum_vitae_id)
+#
+#         # Use this to see how cv looks
+#         # return render(
+#         #     request,
+#         #     "common/includes/curriculum_vitae/download.html",
+#         #     {
+#         #         'resource': resource
+#         #     }
+#         # )
+#         template_path = "curriculum_vitae/download/download.html"
+#         context = {'curriculum_vitae': curriculum_vitae, 'server_base_url': settings.SERVER_BASE_URL}
+#         # Create a Django response object, and specify content_type as pdf
+#         response = HttpResponse(content_type='application/pdf')
+#         response['Content-Disposition'] = \
+#             'attachment; filename="' + curriculum_vitae.account.name.split()[0].lower() + '_cv.pdf"'
+#         # find the template and render it.
+#         template = get_template(template_path)
+#         html = template.render(context)
+#
+#         # create a pdf
+#         pisa_status = pisa.CreatePDF(
+#             html, dest=response, link_callback=link_callback)
+#         # if error then show some funny view
+#         if pisa_status.err:
+#             return HttpResponse('We had some errors <pre>' + html + '</pre>')
+#         return response
+
+import os
+from django.conf import settings
+from django.template.loader import get_template
+from django.http import HttpResponse
+import pdfkit
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.template.loader import get_template
+from django.urls import reverse
+from django.views import View
+from xhtml2pdf import pisa
+from django.conf import settings
+
+from core.controllers.curriculum_vitae.curriculum_vitae import CurriculumVitaeController
+from core.controllers.resource.account import ResourceAccountController
+from core.decorators.login_required import login_required
+from core.utils.xhtml2pdf_utils import link_callback
+
+wkhtml_to_pdf = "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe"
+header_html_path = "header.html"
+
+
+class CurriculumVitaeDownloadView(View):
+
+    @staticmethod
+    @login_required()
+    def get(request, curriculum_vitae_id):
+        curriculum_vitae = CurriculumVitaeController.get_curriculum_vitae_by_id(
+            requester=request.user, curriculum_vitae_id=curriculum_vitae_id)
+        options = {
+            'page-size': 'A4',
+            'orientation': 'Portrait',
+            'dpi': 300,
+            'margin-top': '20',
+            'margin-right': '0',
+            'margin-bottom': '20',
+            'margin-left': '0',
+            'disable-smart-shrinking': None,
+        }
+
+        # Render the header HTML content
+        header_template_path = 'curriculum_vitae/download/header.html'
+        header_template = get_template(header_template_path)
+        header_html = header_template.render({})
+
+        # Write the header HTML to a temporary file
+        with open(header_html_path, 'w', encoding='utf-8') as header_file:
+            header_file.write(header_html)
+
+        # Provide the header file path as an option to wkhtmltopdf
+        options['header-html'] = os.path.abspath(header_html_path)
+
+        template_path = 'curriculum_vitae/download/resume.html'
+        template = get_template(template_path)
+
+        context = {'curriculum_vitae': curriculum_vitae, 'server_base_url': settings.SERVER_BASE_URL}
+        html = template.render(context)
+
+        config = pdfkit.configuration(wkhtmltopdf=wkhtml_to_pdf)
+
+        temp_html_path = "temp.html"
+        with open(temp_html_path, 'w', encoding='utf-8') as temp_file:
+            temp_file.write(html)
+
+        # Generate the PDF from the HTML file
+        pdf = pdfkit.from_file(temp_html_path, False, configuration=config, options=options)
+
+        # Delete the temporary HTML and header files
+        # os.remove(temp_html_path)
+        # os.remove(header_html_path)
+
+        # Generate download
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="resume.pdf"'
+
+        if response.status_code != 200:
+            return HttpResponse('We had some errors <pre>' + html + '</pre>')
+        return response
+
+
+

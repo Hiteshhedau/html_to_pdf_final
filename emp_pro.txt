@@ -1,0 +1,62 @@
+{% load static %}
+{% load ui_tags %}
+
+<style>
+.title-under-skill {
+        color: #000;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+  .skill-heading-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+    .summary-desc {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+    .description{
+       display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+      .desc-para {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+</style>
+
+{% if employment_project %}
+<div style="margin-top:10px">
+    <span class="skill-heading-row">{{ employment_project.name }},&nbsp;</span>
+    <span class="skill-heading-row">({{ employment_project|display_employment_project_year }})</span>
+</div>
+<div class="description">Description:</div>
+<div>
+    <span class="desc-para">{{ employment_project.description }}</span>
+</div>
+<div class="description">Roles & Responsibilities:</div>
+<div>
+    <span class="desc-para">{{ employment_project.roles_and_responsibilities }}</span>
+</div>
+<div class="description">Technologies used:</div>
+<div>
+    <span class="desc-para">{{ employment_project.technologies_used }}</span>
+</div>
+{% endif %}

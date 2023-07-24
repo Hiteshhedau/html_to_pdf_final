@@ -1,0 +1,57 @@
+{% load static %}
+{% load ui_tags %}
+
+<style>
+
+.title-under-skill {
+        color: #000;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+  .skill-heading-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+.summary-desc {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+
+</style>
+<div class="skill-area">
+    <div class="skill-heading-row">
+        <div class="title">Educational History</div>
+    </div>
+    <hr/>
+
+    <ul style="padding-inline-start: 15px">
+        {% if curriculum_vitae.education_history %}
+        {% for education_history in curriculum_vitae.education_history.all %}
+        <li class="title-under-skill">
+            <span class="title-under-skill"> {{ education_history.get_degree_display }},</span>
+            <span class="title-under-skill"> {{ education_history.get_field_of_study_display }}</span>
+        </li>
+        <div>
+            <span class="desc-under-skill">{{ education_history.school }},&nbsp;
+                {{ education_history|display_education_end_year }}</span>
+        </div>
+
+
+        {% endfor %}
+
+        {% endif %}
+    </ul>
+</div>

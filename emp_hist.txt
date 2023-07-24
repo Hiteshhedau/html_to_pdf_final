@@ -1,0 +1,63 @@
+{% load static %}
+{% load ui_tags %}
+
+<style>
+
+.title-under-skill {
+        color: #000;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+  .skill-heading-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+.summary-desc {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+
+
+
+</style>
+<div class="skill-area">
+    <div class="skill-heading-row">
+        <div class="title">Work Experience</div>
+    </div>
+    <hr/>
+
+
+        {% if curriculum_vitae.employment_history %}
+        {% for employment_history in curriculum_vitae.employment_history.all %}
+    <ul style="padding-inline-start: 15px">
+        <li class="title-under-skill">
+            <span class="title-under-skill"> {{ employment_history.company_name }},</span>
+            <span class="title-under-skill"> ({{ employment_history|display_employment_history_year }})</span>
+        </li>
+        <div>
+            <span class="desc-under-skill">{{ employment_history.description }}</span>
+        </div>
+
+        {% for employment_project in employment_history.employment_projects.all %}
+        {% include "curriculum_vitae/include/view/employment_proj.html" with employment_project=employment_project %}
+        {% endfor %}
+
+
+  </ul>
+</div>
+{% endfor %}
+
+{% endif %}

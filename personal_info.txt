@@ -1,0 +1,65 @@
+{% load static %}
+{% load ui_tags %}
+<style>
+
+.title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+</style>
+<div class="skill-area"  style="margin-left:40px">
+    <div class="skill-heading-row">
+        <div class="title">Personal Details</div>
+    </div>
+    <hr/>
+    <div class="skill-subtitle">
+        <div class="sub-personal-details">
+            <div
+                    class="title-under-skill"
+                    style="margin-bottom: 0; margin-top: 0"
+            >
+                Name
+            </div>
+            <span class="personal-details">{{ curriculum_vitae.account.name }}</span>
+        </div>
+        <div>
+            <div
+                    class="title-under-skill"
+                    style="margin-bottom: 0; margin-top: 7px"
+            >
+                Marital Status
+            </div>
+            <span class="personal-details">{{ curriculum_vitae.account.get_marital_status_display }}</span>
+        </div>
+        <div>
+            <div
+                    class="title-under-skill"
+                    style="margin-bottom: 0; margin-top: 7px"
+            >
+                Gender
+            </div>
+            <span class="personal-details">{{ curriculum_vitae.account.get_sex_display }}</span>
+        </div>
+        <div>
+            <div
+                    class="title-under-skill"
+                    style="margin-bottom: 0; margin-top: 7px"
+            >
+                Contact No
+            </div>
+            <span class="personal-details">{{ curriculum_vitae.account.phone }}</span>
+        </div>
+        <div>
+            <div
+                    class="title-under-skill"
+                    style="margin-bottom: 0; margin-top: 7px"
+            >
+                Email
+            </div>
+            <span class="personal-details">{{ curriculum_vitae.account.email }}</span>
+        </div>
+    </div>
+</div>
+

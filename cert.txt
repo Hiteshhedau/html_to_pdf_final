@@ -1,0 +1,51 @@
+{% load static %}
+{% load ui_tags %}
+
+<style>
+
+.title-under-skill {
+        color: #000;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+  .skill-heading-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+   .summary-desc {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+</style>
+<div class="skill-area" style="margin-left:40px">
+    <div class="skill-heading-row">
+        <div class="title">Certifications</div>
+    </div>
+    <hr/>
+    <ul style="padding-inline-start: 15px">
+        {% if curriculum_vitae.certifications %}
+        {% for certification in curriculum_vitae.certifications.all %}
+        <li class="title-under-skill">
+            <span class="skill-heading-row">{{ certification.name }}</span>
+        </li>
+
+        <span class="summary-desc">{{ certification|display_certificate_year }}</span>
+
+        {% endfor %}
+        {% endif %}
+
+    </ul>
+</div>

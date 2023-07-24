@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+
+
+   <head>
+      <script>
+         function subst() {
+             var vars = {};
+              // explore the URL query string
+             var x = document.location.search.substring(1).split('&');
+             // loop through each query string segment and get keys/values
+             for (var i in x) {
+                 var z = x[i].split('=', 2);
+                 vars[z[0]] = unescape(z[1]);
+             }
+              // an array of all the parameters passed into the footer file
+             var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+
+             // each page will have an element with class 'section' from the body of the footer HTML
+             var y = document.getElementsByClassName('section');
+             for (var j = 0; j < y.length; j++) {
+                 // if current page equals first page
+                 if (vars[x[2]] == 1) {
+                     y[j].innerHTML = ""
+
+                 }
+             }
+         }
+      </script>
+   </head>
+   <body style=" margin: 0;" onload="subst()">
+      <div class="section" >
+           <img style="margin-left:40px;height:26px;width:126px; margin-bottom : 20px;"
+            class="humancloud-logo"
+            src="https://static.wixstatic.com/media/2b6261_2112b53d7e084d9d98ce41c51723efee~mv2.png/v1/fill/w_218,h_35,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/main-logo.png"
+            alt="Company Logo"
+          />
+      </div>
+      </body>
+</html>

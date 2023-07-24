@@ -1,0 +1,118 @@
+{% load static %}
+{% load ui_tags %}
+
+<style>
+
+.title-under-skill {
+        color: #000;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+  .skill-heading-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .title {
+        color: #0e369c;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+.summary-desc {
+        color: #444;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+
+
+</style>
+<div class="skill-area">
+
+    <div class="skill-heading-row">
+        <div class="title">Skill Set</div>
+    </div>
+    <hr/>
+    <ul style="padding-inline-start: 15px">
+        {% if curriculum_vitae.languages %}
+        <li class="title-under-skill">Languages</li>
+        {% for language_skill in curriculum_vitae.languages.all %}
+        <span class="desc-under-skill">  {% if not forloop.first %},&nbsp;{% endif %}{{ language_skill.get_language_skill_type_display }}
+</span>
+
+
+        {% endfor %}
+
+        {% endif %}
+        {% if curriculum_vitae.frameworks %}
+        <li class="title-under-skill">Frameworks</li>
+        {% for framework_skill in curriculum_vitae.frameworks.all %}
+        <span class="desc-under-skill">  {% if not forloop.first %},&nbsp;{% endif %}{{ framework_skill.get_framework_skill_type_display }}
+</span>
+
+
+        {% endfor %}
+
+        {% endif %}
+
+
+        {% if curriculum_vitae.rdbms %}
+        <li class="title-under-skill">Databases</li>
+        {% for rdbms_skill in curriculum_vitae.rdbms.all %}
+        <span class="desc-under-skill">  {% if not forloop.first %},&nbsp;{% endif %}{{ rdbms_skill.get_rdbms_skill_type_display }}
+</span>
+
+
+        {% endfor %}
+        {% endif %}
+
+
+        {% if curriculum_vitae.no_sql %}
+        {% for no_sql_skill in curriculum_vitae.no_sql.all %}
+        <span class="desc-under-skill">  {{ no_sql_skill.get_no_sql_skill_type_display }}
+</span>
+        {% endfor %}
+        {% endif %}
+
+        {% if curriculum_vitae.webservers %}
+
+        <li class="title-under-skill">Webservers</li>
+        {% for language_skill in curriculum_vitae.webservers.all %}
+        <span class="desc-under-skill">  {% if not forloop.first %},&nbsp;{% endif %}{{ language_skill.get_webserver_skill_type_display }}
+</span>
+
+
+        {% endfor %}
+
+        {% endif %}
+
+        {% if curriculum_vitae.clouds %}
+        <li class="title-under-skill">Clouds</li>
+        {% for cloud_skill in curriculum_vitae.clouds.all %}
+        <span class="desc-under-skill">  {% if not forloop.first %},&nbsp;{% endif %}{{ cloud_skill.get_cloud_skill_type_display }}
+</span>
+
+    </ul>
+
+
+    {% endfor %}
+
+    {% endif %}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
